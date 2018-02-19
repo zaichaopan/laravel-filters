@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Course;
+use App\Filters\CourseFilter;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CourseFilter $filter)
     {
-        return view('home');
+        $courses = Course::with(['subjects', 'users'])->filter($filter)->paginate(10);
+
+        return view('home', compact('courses'));
     }
 }
