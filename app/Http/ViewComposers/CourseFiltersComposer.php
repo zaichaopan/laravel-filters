@@ -3,12 +3,12 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
-use App\Filters\CourseFilter;
+use App\Filters\Course\CourseFilters;
 
 class CourseFiltersComposer
 {
     public function compose(View $view)
     {
-        $view->with('courseFilters', CourseFilter::mappings());
+        $view->with('courseFilters', CourseFilters::mappings());
     }
 }
